@@ -1,6 +1,6 @@
 import instance from "../api";
 
-export const deviceController = {
+export const pingController = {
   async read(
     app_version: string | number | undefined,
     companyId: undefined | number | string

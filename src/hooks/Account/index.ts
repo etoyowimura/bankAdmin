@@ -1,30 +1,37 @@
 import { useQuery } from "react-query";
-import { locationsController } from "../../API/LayoutApi/adminLocation";
+import { accountController } from "../../services/layout/accountController";
 
-export const useLocationData = (
+export const useAccountData = (
   name: any,
   companyId: undefined | number | string
 ): object => {
   return useQuery(
-    [`admin/location${name}`, name, companyId],
-    () => locationsController.read(name, companyId),
+    [`admin/account${name}`, name],
+    () => accountController.read(name),
     { refetchOnWindowFocus: false }
   );
 };
 
-export const useLocationOneData = (
+export const useAccountCompanyOne = (
   companyId: number | string | undefined
 ): any => {
   return useQuery(
-    [`admin/locationOne/${companyId || "all"}`, companyId],
-    () => locationsController.locationCompanyOne(companyId),
+    [`account/${companyId || "all"}`, companyId],
+    () => accountController.accountCompanyOne(companyId),
     { refetchOnWindowFocus: false }
   );
 };
 
-export const useFindLocation = async (query: string) => {
-  return await locationsController.locationFinderId(query);
+export const useAccountOneData = (
+  companyId: number | string | undefined
+): any => {
+  return useQuery(
+    [`admin/accountOne/${companyId || "all"}`, companyId],
+    () => accountController.accountCompanyOne(companyId),
+    { refetchOnWindowFocus: false }
+  );
 };
-export const useFindUserAddress = async (query: any) => {
-  return await locationsController.UserAddressFinderId(query);
+
+export const useFindAccount = async (query: string) => {
+  return await accountController.accountFinderId(query);
 };

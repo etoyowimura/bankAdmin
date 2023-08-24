@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useAccountData } from "../../Hooks/Account";
+import { useAccountData } from "../../hooks/Account/";
 import AccountTable from "./AccountTable";
 import AddAccount from "./AddAccount";
 import { Button } from "antd";
 import SearchOptions from "../../utils/SearchOptions";
-import {
-  SearchResultForAccount,
-  SearchResultForAccountId,
-} from "../../utils/SearchResults";
+import { SearchForAccount } from "../../utils/SearchResults";
 
 type Data = {
   data?: {
@@ -44,7 +41,7 @@ const Account = () => {
       >
         {open && <AddAccount refetch={refetch} open={open} setOpen={setOpen} />}
         <SearchOptions
-          SearchResult={(query: string) => SearchResultForAccount(query)}
+          SearchResult={(query: string) => SearchForAccount(query)}
           onSelect={(value: any, { valId }: { valId: number | string }) => {
             setAppVersion(valId === undefined ? "" : valId);
             if (valId) {
@@ -52,16 +49,6 @@ const Account = () => {
             }
           }}
           placeholder="Models  Search"
-        />
-        <SearchOptions
-          SearchResult={(query: string) => SearchResultForAccountId(query)}
-          onSelect={(value: any, { valId }: { valId: number | string }) => {
-            setAppVersion(valId === undefined ? "" : valId);
-            if (valId) {
-              setSkip(1);
-            }
-          }}
-          placeholder="USer_id Search"
         />
         <Button
           type="primary"

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useAccountCompanyOne } from "../../hooks/Account";
+import { useCardCompanyOne } from "../../hooks/Card/index";
 import {
   Form,
   Spin,
@@ -31,9 +31,9 @@ type params = {
 type MyObjectType = {
   [key: string | number]: any; // Индексная подпись с параметром типа 'string'
 };
-const AccountEdit = () => {
+const CardEdit = () => {
   const { id } = useParams<params>();
-  const { data, refetch, status }: MyObjectType = useAccountCompanyOne(id);
+  const { data, refetch, status }: MyObjectType = useCardCompanyOne(id);
   let navigate = useNavigate();
 
   const onSubmit = async (value: any) => {
@@ -175,4 +175,4 @@ const AccountEdit = () => {
   );
 };
 
-export default AccountEdit;
+export default CardEdit;
